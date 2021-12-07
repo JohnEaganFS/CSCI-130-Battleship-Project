@@ -1,0 +1,56 @@
+Weekly Progress Report
+Author: John Eagan (I'm doing this project solo so all implementation is done by me)
+
+9/27 - 10/3
+Basic implementation of the client-side web pages (index.html, help.html, etc).
+Structure work trying to figure out how to allow user to switch between pages easily.
+Implementation of navigation bar to act as "link" between web pages.
+
+10/4 - 10/10
+Nothing, mostly studying for Midterm
+
+10/11 - 10/17
+Setting up the server files and placing the files into a more structured file system.
+Messing around with passing information between client and server via AJAX.
+Basic implementation of 2D array that is passed between JSON file and HTML to test how values are stored.
+
+10/18 - 10/24
+Lots of struggling to get information passed effectively with PHP and the use of POST/GET when compared to AJAX.
+Implemented basic structure of login and signup web pages that should use form to pass information via POST.
+
+10/25 - 10/31
+Nothing.
+
+11/1 - 11/7
+Beginning deeper implementation of game logic.
+Implemented 2D arrays to locally store the values of "cells" within the player and opponent's board.
+Implemented system to determine if a ship can be placed in a specific coordinate.
+Implemented use of cell values to determine the "state" of a specific coordinate.
+Started implementing functions to allow player to update values of cells (buttons) by clicking on them.
+
+11/8 - 11/14
+Attempted to implement RDBMS table to store values rather than a server-stored file.
+Not quite there but the database is setup for implementation of tables and PHP access.
+
+11/15 - 11/21
+Majority of client-side functionalities implemented (game.html, updating the board status, displaying, etc).
+Database table implemented for user accounts.
+Connected signup and login to Users table and implemented hashed passwords.
+Implementation of sessions and php files to handle invite/join game process.
+
+11/22 - 11/28
+Thanksgiving so I got lazy.
+Implemented Games table and Invites table to store almost all the information needed to store a game between users.
+
+11/29 - 12/5
+Had to rewrite a lot of the game logic to work with the Database rather than be locally stored.
+Connected most of my functionalities to the Database with AJAX calls.
+Designed system to update turns after a user has made a move and check for the game end (when a player's remaining ships == 0).
+Fully implemented leaderboard and sorting of users by their stats.
+
+12/6 - 12/12
+Implemented mostly everything at this point.
+Still having issues with implementing the powers properly.
+Cleaning up the code somewhat and testing a lot of the functionalities.
+Looking for ways to break the program (reloading at weird times, setting ships in impossible places, etc) and then fixing these issues.
+

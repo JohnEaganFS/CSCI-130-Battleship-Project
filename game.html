@@ -1,0 +1,1682 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<title>Battleship Project - Game</title>
+		
+		<!-- Links for CSS/Fonts -->
+		<link rel="stylesheet" href="css/main.css" />
+		<link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+		<link rel="icon" href="https://cdn.d1baseball.com/logos/teams/256/fresnost.png">
+		
+		<style>
+			tbody tr td{
+				border: 1px solid black;
+				text-align: center;
+				height: 30px;
+				width: 30px;
+			}
+			
+			#ships {
+				float:left;
+				width: 250px;
+				height: 800px;
+				border: 1px solid black;
+			}
+			
+			#sidebar {
+				float:left;
+				padding: 0px 0px 0px 10px;
+			}
+			
+			#powerssidebar {
+				float:left;
+				width: 250px;
+				height: 800px;
+				border: 1px solid black;
+			}
+			
+			#playerboard, #enemyboard {
+				border-collapse: collapse;
+				float:left;
+				margin: 0px 30px 0px 30px;
+			}
+			
+			#powers {
+				margin: auto;
+				width: 50%;
+				height: 40%;
+				border: 1px solid black;
+				padding: 10px;
+				border-collapse: collapse;
+			}
+			
+			td button {
+				border-radius: 0px;
+				width: 100%;
+				height: 100%;
+				border: 0;
+				background-color: white;
+				font-size: 16px;
+				font-weight: bold;
+			}
+			
+			#powerscontainer button {
+				width: 100%;
+				height: 100%;
+				background-color: white;
+				font-size: 16px;
+				font-weight: bold;
+			}
+		</style>
+	</head>
+	
+	<body>
+		
+		<!-- Navigation bar for different pages -->
+		<nav id="navbar">
+			<ul>
+				<li><a href="index.html">Main Page</a></li>
+				<li><a href="game.html" class="active">Play</a></li>
+				<li><a href="help.html">Help</a></li>
+				<li><a href="leaderboard.html">Leaderboard</a></li>
+				<li><a href="login.html">Login</a></li>
+				<li><a href="signup.html">Sign Up</a></li>
+				<li><a href="contact.html">Contact</a></li>
+			</ul>
+		</nav>
+		<br><br><br>
+		
+		<div id="ships">
+			<p>Players:</p>
+			<div id="playerContainer">
+				<p id="player1"></p>
+				<p id="player2"></p>
+			</div>
+			<hr>
+			
+			<p>Time:</p>
+			<div id="timeContainer">
+				<p id="time"></p>
+			</div>
+			<hr>
+			
+			<p>Turn:</p>
+			<div id="turnContainer">
+				<p id="turn"></p>
+			</div>
+			<hr>
+			
+			<p>Ships Remaining:</p>
+			<div id="shipsRemContainer">
+				<p id="p1ShipsRem"></p>
+				<p id="p2ShipsRem"></p>
+			</div>
+			
+		</div>
+		
+		<table id="playerboard">
+			<caption> Your Board </caption>
+			<tbody>
+			<tr>
+				<td></td>
+				<td>A</td>
+				<td>B</td>
+				<td>C</td>
+				<td>D</td>
+				<td>E</td>
+				<td>F</td>
+				<td>G</td>
+				<td>H</td>
+				<td>I</td>
+				<td>J</td>
+			</tr>
+			
+			<tr>
+				<td>1</td>
+				<td id="pb00"></td>
+				<td id="pb01"></td>
+				<td id="pb02"></td>
+				<td id="pb03"></td>
+				<td id="pb04"></td>
+				<td id="pb05"></td>
+				<td id="pb06"></td>
+				<td id="pb07"></td>
+				<td id="pb08"></td>
+				<td id="pb09"></td>
+			</tr>
+			
+			<tr>
+				<td>2</td>
+				<td id="pb10"></td>
+				<td id="pb11"></td>
+				<td id="pb12"></td>
+				<td id="pb13"></td>
+				<td id="pb14"></td>
+				<td id="pb15"></td>
+				<td id="pb16"></td>
+				<td id="pb17"></td>
+				<td id="pb18"></td>
+				<td id="pb19"></td>
+			</tr>
+			
+			<tr>
+				<td>3</td>
+				<td id="pb20"></td>
+				<td id="pb21"></td>
+				<td id="pb22"></td>
+				<td id="pb23"></td>
+				<td id="pb24"></td>
+				<td id="pb25"></td>
+				<td id="pb26"></td>
+				<td id="pb27"></td>
+				<td id="pb28"></td>
+				<td id="pb29"></td>
+			</tr>
+			
+			<tr>
+				<td>4</td>
+				<td id="pb30"></td>
+				<td id="pb31"></td>
+				<td id="pb32"></td>
+				<td id="pb33"></td>
+				<td id="pb34"></td>
+				<td id="pb35"></td>
+				<td id="pb36"></td>
+				<td id="pb37"></td>
+				<td id="pb38"></td>
+				<td id="pb39"></td>
+			</tr>
+			
+			<tr>
+				<td>5</td>
+				<td id="pb40"></td>
+				<td id="pb41"></td>
+				<td id="pb42"></td>
+				<td id="pb43"></td>
+				<td id="pb44"></td>
+				<td id="pb45"></td>
+				<td id="pb46"></td>
+				<td id="pb47"></td>
+				<td id="pb48"></td>
+				<td id="pb49"></td>
+			</tr>
+			
+			<tr>
+				<td>6</td>
+				<td id="pb50"></td>
+				<td id="pb51"></td>
+				<td id="pb52"></td>
+				<td id="pb53"></td>
+				<td id="pb54"></td>
+				<td id="pb55"></td>
+				<td id="pb56"></td>
+				<td id="pb57"></td>
+				<td id="pb58"></td>
+				<td id="pb59"></td>
+			</tr>
+			
+			<tr>
+				<td>7</td>
+				<td id="pb60"></td>
+				<td id="pb61"></td>
+				<td id="pb62"></td>
+				<td id="pb63"></td>
+				<td id="pb64"></td>
+				<td id="pb65"></td>
+				<td id="pb66"></td>
+				<td id="pb67"></td>
+				<td id="pb68"></td>
+				<td id="pb69"></td>
+			</tr>
+		
+			<tr>
+				<td>8</td>
+				<td id="pb70"></td>
+				<td id="pb71"></td>
+				<td id="pb72"></td>
+				<td id="pb73"></td>
+				<td id="pb74"></td>
+				<td id="pb75"></td>
+				<td id="pb76"></td>
+				<td id="pb77"></td>
+				<td id="pb78"></td>
+				<td id="pb79"></td>
+			</tr>
+		
+			<tr>
+				<td>9</td>
+				<td id="pb80"></td>
+				<td id="pb81"></td>
+				<td id="pb82"></td>
+				<td id="pb83"></td>
+				<td id="pb84"></td>
+				<td id="pb85"></td>
+				<td id="pb86"></td>
+				<td id="pb87"></td>
+				<td id="pb88"></td>
+				<td id="pb89"></td>
+			</tr>
+			
+			<tr>
+				<td>10</td>
+				<td id="pb90"></td>
+				<td id="pb91"></td>
+				<td id="pb92"></td>
+				<td id="pb93"></td>
+				<td id="pb94"></td>
+				<td id="pb95"></td>
+				<td id="pb96"></td>
+				<td id="pb97"></td>
+				<td id="pb98"></td>
+				<td id="pb99"></td>
+			</tr>
+			
+			</tbody>
+
+		</table>
+	
+		<table id="enemyboard">
+			<caption> Opponent's Board </caption>
+			<tbody>
+			<tr>
+				<td></td>
+				<td>A</td>
+				<td>B</td>
+				<td>C</td>
+				<td>D</td>
+				<td>E</td>
+				<td>F</td>
+				<td>G</td>
+				<td>H</td>
+				<td>I</td>
+				<td>J</td>
+			</tr>
+			
+			<tr>
+				<td>1</td>
+				<td id="eb00"></td>
+				<td id="eb01"></td>
+				<td id="eb02"></td>
+				<td id="eb03"></td>
+				<td id="eb04"></td>
+				<td id="eb05"></td>
+				<td id="eb06"></td>
+				<td id="eb07"></td>
+				<td id="eb08"></td>
+				<td id="eb09"></td>
+			</tr>
+			
+			<tr>
+				<td>2</td>
+				<td id="eb10"></td>
+				<td id="eb11"></td>
+				<td id="eb12"></td>
+				<td id="eb13"></td>
+				<td id="eb14"></td>
+				<td id="eb15"></td>
+				<td id="eb16"></td>
+				<td id="eb17"></td>
+				<td id="eb18"></td>
+				<td id="eb19"></td>
+			</tr>
+			
+			<tr>
+				<td>3</td>
+				<td id="eb20"></td>
+				<td id="eb21"></td>
+				<td id="eb22"></td>
+				<td id="eb23"></td>
+				<td id="eb24"></td>
+				<td id="eb25"></td>
+				<td id="eb26"></td>
+				<td id="eb27"></td>
+				<td id="eb28"></td>
+				<td id="eb29"></td>
+			</tr>
+			
+			<tr>
+				<td>4</td>
+				<td id="eb30"></td>
+				<td id="eb31"></td>
+				<td id="eb32"></td>
+				<td id="eb33"></td>
+				<td id="eb34"></td>
+				<td id="eb35"></td>
+				<td id="eb36"></td>
+				<td id="eb37"></td>
+				<td id="eb38"></td>
+				<td id="eb39"></td>
+			</tr>
+			
+			<tr>
+				<td>5</td>
+				<td id="eb40"></td>
+				<td id="eb41"></td>
+				<td id="eb42"></td>
+				<td id="eb43"></td>
+				<td id="eb44"></td>
+				<td id="eb45"></td>
+				<td id="eb46"></td>
+				<td id="eb47"></td>
+				<td id="eb48"></td>
+				<td id="eb49"></td>
+			</tr>
+			
+			<tr>
+				<td>6</td>
+				<td id="eb50"></td>
+				<td id="eb51"></td>
+				<td id="eb52"></td>
+				<td id="eb53"></td>
+				<td id="eb54"></td>
+				<td id="eb55"></td>
+				<td id="eb56"></td>
+				<td id="eb57"></td>
+				<td id="eb58"></td>
+				<td id="eb59"></td>
+			</tr>
+			
+			<tr>
+				<td>7</td>
+				<td id="eb60"></td>
+				<td id="eb61"></td>
+				<td id="eb62"></td>
+				<td id="eb63"></td>
+				<td id="eb64"></td>
+				<td id="eb65"></td>
+				<td id="eb66"></td>
+				<td id="eb67"></td>
+				<td id="eb68"></td>
+				<td id="eb69"></td>
+			</tr>
+		
+			<tr>
+				<td>8</td>
+				<td id="eb70"></td>
+				<td id="eb71"></td>
+				<td id="eb72"></td>
+				<td id="eb73"></td>
+				<td id="eb74"></td>
+				<td id="eb75"></td>
+				<td id="eb76"></td>
+				<td id="eb77"></td>
+				<td id="eb78"></td>
+				<td id="eb79"></td>
+			</tr>
+		
+			<tr>
+				<td>9</td>
+				<td id="eb80"></td>
+				<td id="eb81"></td>
+				<td id="eb82"></td>
+				<td id="eb83"></td>
+				<td id="eb84"></td>
+				<td id="eb85"></td>
+				<td id="eb86"></td>
+				<td id="eb87"></td>
+				<td id="eb88"></td>
+				<td id="eb89"></td>
+			</tr>
+			
+			<tr>
+				<td>10</td>
+				<td id="eb90"></td>
+				<td id="eb91"></td>
+				<td id="eb92"></td>
+				<td id="eb93"></td>
+				<td id="eb94"></td>
+				<td id="eb95"></td>
+				<td id="eb96"></td>
+				<td id="eb97"></td>
+				<td id="eb98"></td>
+				<td id="eb99"></td>
+			</tr>
+			</tbody>
+
+		</table>
+		
+		<div id="powerssidebar">
+			<p>Powers</p>
+			<div id="powerscontainer">
+			</div>
+
+		</div>
+		
+		<div id="sidebar">
+			<label for="invites">Invites:</label>
+			<select name="invites" id="invites">
+			</select>
+			<button type="button" onclick="acceptInvite(); location.reload();">Accept Invite</button>
+			<button type="button" onclick="inviteUser()">Invite Another User</button>
+			
+			<br><br>
+			
+			<label for="activegames">Active Games:</label>
+			<select name="activegames" id="activegames">
+			</select>
+			<button type="button" onclick="joinActive()">Join Active Game</button>
+		</div>
+
+		<script>
+			var username = "";
+			var pb = new Array(10);
+			var eb = new Array();
+			var possible = new Array();
+			var ctr = 0;
+			var length = 0;
+			var initialCell = new Array();
+			var fill = new Array();
+			var curr = new Array();
+			var allShips = new Array();
+			allShips = [];
+			var end1 = new Array();
+			var end2 = new Array();
+			var currShip = 0;
+			
+			var currentturn = 0;
+			var isP1Turn = 0;
+			
+			var ebShipsLeft = 0;
+			
+			var super3 = false;
+			var ctrSuper3 = 1;
+			var superbig = false;
+			
+			var id;
+			
+			function setupBoardForShips() {
+			/*
+				var initialBoard = [0,0,0,0,0,0,0,0,0,0]
+				for (let i = 10; i > 0; --i) {
+					pb.push(initialBoard);
+				}*/
+				for (let i = 0; i < 10; ++i) {
+					for (let j = 0; j < 10; ++j) {
+						let cell = document.getElementById("pb" + i + j);
+						cell.innerHTML = "<button type='button' id='pbs" + i + j + "' value = '0' onclick = setSquare(" + i + "," + j + ")></button>"
+					}
+				}
+				for (let i = 0; i < 10; ++i) {
+					for (let j = 0; j < 10; ++j) {
+						let cell = document.getElementById("eb" + i + j);
+						cell.innerHTML = "<button type='button' id='ebs" + i + j + "' value = '0' onclick = setSquare(" + i + "," + j + ")></button>"
+					}
+				}
+			}
+			
+			function setSquare(i, j) {
+				let square = document.getElementById("pbs" + i + j);
+				switch (square.value) {
+					case '4':
+						alert("You can't place a ship there");
+						break;
+					case '1':
+						alert("You already have a ship there");
+						break;
+					case '2':
+						check2(i,j);
+						break;
+					case '0':
+						curr = [];
+						initialCell = [i, j];
+						end1 = initialCell;
+						curr.push(initialCell);
+						square.value = 1;
+						//square.innerHTML = 1;
+						highlightSquares(i,j);
+				}
+				
+			}
+			
+			function check2(x,y) {
+				let clickedSquare = document.getElementById("pbs" + x + y);
+				end2 = [x,y];
+				clickedSquare.value = 1;
+				//clickedSquare.innerHTML = 1;
+				let n = possible.length;
+				let xi = initialCell[0];
+				let yi = initialCell[1];
+				if (initialCell[0] == x) {
+					// delete x changes from possible
+					let indices = new Array();
+					for (let i = 0; i < n; ++i) {
+						if (possible[i][0] != xi) {
+							let s = document.getElementById("pbs" + possible[i][0] + possible[i][1]);
+							s.value = 4;
+							//s.innerHTML = 4;
+						}
+						else {
+							indices.push(i);
+						}
+					}
+					
+					var tempArray = new Array();
+					for (let i = 0; i < indices.length; ++i) {
+						tempArray.push(possible[indices[i]]);
+					}
+					possible = tempArray;
+					//alert(possible);
+					indices = [];
+					
+					// push into fill the necessary
+					let isNeg = (yi - y) < 0;
+					if (isNeg) {
+						let max = yi;
+						for (let i = 0; i < curr.length; ++i) {
+							if (curr[i][1] > max) {
+								max = curr[i][1];
+							}
+						}
+						end1 = [xi, max];
+						yi = max;
+					}
+					else {
+						let min = yi;
+						for (let i = 0; i < curr.length; ++i) {
+							if (curr[i][1] < min) {
+								min = curr[i][1];
+							}
+						}
+						end1 = [xi, min];
+						yi = min;
+					}
+					curr.push([x,y]);
+					let diff = Math.abs(yi - y);
+					for (let i = 1; i < diff; ++i) {
+						if (isNeg) {
+							fill.push([xi,yi+i]);
+							curr.push([xi,yi+i]);
+						}
+						else {
+							fill.push([xi,yi-i]);
+							curr.push([xi,yi-i])
+						}
+					}
+					
+					for (let i = 0; i < fill.length; ++i) {
+						let s = document.getElementById("pbs" + fill[i][0] + fill[i][1]);
+						s.value = 1;
+						//s.innerHTML = 1;
+					}
+					
+					for (let i = 0; i < possible.length; ++i) {
+						let isOut = true;
+						let newx = possible[i][0];
+						let newy = possible[i][1];
+						for (let j = 0; j < curr.length; ++j) {
+							let currx = curr[j][0];
+							let curry = curr[j][1];
+							if ((currx == newx) && (curry == newy)) {
+								isOut = false;
+							}
+						}
+						if (isOut) {
+							indices.push(i);
+						}
+					}
+					
+					tempArray = []
+					for (let i = 0; i < indices.length; ++i) {
+						tempArray.push(possible[indices[i]]);
+					}
+					possible = tempArray;
+					//alert(possible);
+					indices = [];
+
+					let remainingLength = length - curr.length;
+					for (let i = 0; i < possible.length; ++i) {
+						let currCell = document.getElementById("pbs" + possible[i][0] + possible[i][1]);
+						let cx = possible[i][0]
+						let cy = possible[i][1];
+						let e1y = end1[1];
+						let e2y = end2[1];
+						if (cy > e1y) {
+							let max = yi;
+							for (let i = 0; i < curr.length; ++i) {
+								if (curr[i][1] > max && (curr[i][0] != cx || curr[i][1] != cy)) {
+									max = curr[i][1];
+								}
+							}
+							end1 = [xi, max];
+							e1y = max;
+							if (Math.abs(cy - e1y) > remainingLength) {
+								currCell.value = 4;
+								//currCell.innerHTML = 4;
+							}
+							else {
+								indices.push(i);
+							}
+						}
+						else {
+							let min = e1y;
+							for (let i = 0; i < curr.length; ++i) {
+								if (curr[i][1] < min && (curr[i][0] != cx || curr[i][1] != cy)) {
+									min = curr[i][1];
+								}
+							}
+							end1 = [xi, min];
+							e1y = min;
+							if (Math.abs(cy - e1y) > remainingLength) {
+								currCell.value = 4;
+								//currCell.innerHTML = 4;
+							}
+							else {
+								indices.push(i);
+							}
+						}
+					}
+					
+					tempArray = []
+					for (let i = 0; i < indices.length; ++i) {
+						tempArray.push(possible[indices[i]]);
+					}
+					possible = tempArray;
+					//alert(possible);
+					indices = [];
+				}
+				else {
+					// delete y changes from possible
+					let indices = new Array();
+					for (let i = 0; i < n; ++i) {
+						if (possible[i][1] != yi) {
+							let s = document.getElementById("pbs" + possible[i][0] + possible[i][1]);
+							s.value = 4;
+							//s.innerHTML = 4;
+						}
+						else {
+							indices.push(i);
+						}
+					}
+					
+					var tempArray = new Array();
+					for (let i = 0; i < indices.length; ++i) {
+						tempArray.push(possible[indices[i]]);
+					}
+					possible = tempArray;
+					indices = [];
+					
+					// push into fill the necessary
+					let isNeg = (xi - x) < 0;
+					if (isNeg) {
+						let max = xi;
+						for (let i = 0; i < curr.length; ++i) {
+							if (curr[i][0] > max) {
+								max = curr[i][0];
+							}
+						}
+						end1 = [max, yi];
+						xi = max;
+					}
+					else {
+						let min = xi;
+						for (let i = 0; i < curr.length; ++i) {
+							if (curr[i][0] < min) {
+								min = curr[i][0];
+							}
+						}
+						end1 = [min, yi];
+						xi = min;
+					}
+					curr.push([x,y]);
+					let diff = Math.abs(xi - x);
+					for (let i = 1; i < diff; ++i) {
+						if (isNeg) {
+							fill.push([xi+i,yi]);
+							curr.push([xi+i,yi]);
+						}
+						else {
+							fill.push([xi-i,yi]);
+							curr.push([xi-i,yi]);
+						}
+					}
+					
+					for (let i = 0; i < fill.length; ++i) {
+						let s = document.getElementById("pbs" + fill[i][0] + fill[i][1]);
+						s.value = 1;
+						//s.innerHTML = 1;
+					}
+					
+					for (let i = 0; i < possible.length; ++i) {
+						let isOut = true;
+						let newx = possible[i][0];
+						let newy = possible[i][1];
+						for (let j = 0; j < curr.length; ++j) {
+							let currx = curr[j][0];
+							let curry = curr[j][1];
+							if ((currx == newx) && (curry == newy)) {
+								isOut = false;
+							}
+						}
+						if (isOut) {
+							indices.push(i);
+						}
+					}
+					
+					tempArray = []
+					for (let i = 0; i < indices.length; ++i) {
+						tempArray.push(possible[indices[i]]);
+					}
+					possible = tempArray;
+					indices = [];
+
+					let remainingLength = length - curr.length;
+					for (let i = 0; i < possible.length; ++i) {
+						let currCell = document.getElementById("pbs" + possible[i][0] + possible[i][1]);
+						let cx = possible[i][0];
+						let e1x = end1[0];
+						let e2x = end2[0];
+						if (cx > e1x) {
+							let max = xi;
+							for (let i = 0; i < curr.length; ++i) {
+								if (curr[i][0] > max) {
+									max = curr[i][0];
+								}
+							}
+							end1 = [max, yi];
+							e1x = max;
+							if (Math.abs(cx - e1x) > remainingLength) {
+								currCell.value = 4;
+								//currCell.innerHTML = 4;
+							}
+							else {
+								indices.push(i);
+							}
+						}
+						else {
+							let min = xi;
+							for (let i = 0; i < curr.length; ++i) {
+								if (curr[i][0] < min) {
+									min = curr[i][0];
+								}
+							}
+							end1 = [min, yi];
+							e1x = min;
+							if (Math.abs(cx - e1x) > remainingLength) {
+								currCell.value = 4;
+								//currCell.innerHTML = 4;
+							}
+							else {
+								indices.push(i);
+							}
+						}
+					}
+					
+					tempArray = []
+					for (let i = 0; i < indices.length; ++i) {
+						tempArray.push(possible[indices[i]]);
+					}
+					possible = tempArray;
+					indices = [];
+				}
+				
+				displayStatus();
+				if (possible.length == 0) {
+					if (curr.length != length) {
+						for (let i = 0; i < 10; ++i) {
+							for (let j = 0; j < 10; ++j) {
+								let currCell = document.getElementById("pbs" + i + j);
+								let isInCurr = false;
+								for (let k = 0; k < allShips.length; ++k) {
+									if ((i == allShips[k][0]) && (j == allShips[k][1])) {
+										isInCurr = true;
+										currCell.value = 1;
+										//currCell.innerHTML = 1;
+									}
+								}
+								if (!isInCurr) {
+									currCell.value = 0;
+									//currCell.innerHTML = 0;
+								}
+							}
+						}
+						displayStatus();
+						setShips(currShip);
+					}
+					else {
+						for (let i = 0; i < curr.length; ++i) {
+						allShips.push(curr[i]);
+						}
+						if (isNextShip()) {
+							// reset board
+							for (let i = 0; i < 10; ++i) {
+								for (let j = 0; j < 10; ++j) {
+									let currCell = document.getElementById("pbs" + i + j);
+									let isInCurr = false;
+									for (let k = 0; k < allShips.length; ++k) {
+										if ((i == allShips[k][0]) && (j == allShips[k][1])) {
+											isInCurr = true;
+											currCell.value = 1;
+											//currCell.innerHTML = 1;
+										}
+									}
+									if (!isInCurr) {
+										currCell.value = 0;
+										//currCell.innerHTML = 0;
+									}
+								}
+							}
+							displayStatus();
+							setShips(nextShip());
+						}
+						else {
+							for (let i = 0; i < 10; ++i) {
+								for (let j = 0; j < 10; ++j) {
+									let currCell = document.getElementById("pbs" + i + j);
+									isIn = false;
+									for (let h = 0; h < allShips.length; ++h) {
+										if ((allShips[h][0] == i && allShips[h][1] == j)) {
+											isIn = true;
+											currCell.value = 1;
+											//currCell.innerHTML = 1;
+										}
+									}
+									if (isIn == false) {
+										let s = document.getElementById("pbs" + i + j);
+										s.value = 4;
+										//s.innerHTML = 4;
+									}
+								}
+							}
+							displayStatus();
+							//setup array here
+							for (let i = 0; i < 10; ++i) {
+								let row = new Array();
+								for (let j = 0; j < 10; ++j) {
+									let currCell = document.getElementById("pbs" + i + j);
+									row.push(currCell.value);
+								}
+								pb[i] = (row);
+							}
+							//ready button
+							let readybtn = document.createElement('button');
+							readybtn.type = "button";
+							readybtn.innerHTML = "Ready";
+							readybtn.onclick = playerReady;
+							readybtn.style.height = "100px";
+							readybtn.style.width = "100px";
+							document.getElementById("playerboard").appendChild(readybtn);
+						}
+					}
+				}
+			}
+			
+			function playerReady() {
+				let jsonpb = JSON.stringify(pb);
+				let p1 = document.getElementById('player1').value;
+				let p2 = document.getElementById('player2').value;
+				let info = "pb=" + jsonpb + "&p1=" + p1 + "&p2=" + p2;
+				let httpRequest = new XMLHttpRequest();
+				httpRequest.onreadystatechange = function() {
+					if (httpRequest.readyState === XMLHttpRequest.DONE) {
+						if (httpRequest.status === 200) { 
+							alert(this.responseText);
+							location.reload();
+						}
+						else {
+							alert('There was a problem with the request.');
+						}
+					}
+				};
+				httpRequest.open("POST", "php/playerReady.php");
+				httpRequest.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+				httpRequest.send(info);
+			}
+			
+			var shipList = [5,4,3,2,1]
+			function nextShip() {
+				shipList.splice(0,1);
+				return shipList[0];
+			}
+			
+			function isNextShip() {
+				return shipList.length > 1;
+			}
+			
+			function highlightSquares(x, y) {
+				let square = document.getElementById("pbs" + x + y);
+				possible = [];
+				possible.push([x,y]);
+				for (let i = 1; i < length; ++i) {
+					if (x - i >= 0) {
+						let conflict = false;
+						for (let k = 0; k < allShips.length; ++k) {
+							if ((x-i) <= allShips[k][0] && x > allShips[k][0] && allShips[k][1] == y) {
+								conflict = true;
+							}
+						}
+						if (!conflict) {
+							let s = document.getElementById("pbs" + (x-i) + y);
+							possible.push([x-i,y]);
+							s.value = 2;
+							//s.innerHTML = 2;
+						}
+					}
+					if (x + i < 10) {
+						let conflict = false;
+						for (let k = 0; k < allShips.length; ++k) {
+							if ((x+i) >= allShips[k][0] && x < allShips[k][0] && allShips[k][1] == y) {
+								conflict = true;
+							}
+						}
+						if (!conflict) {
+							let s = document.getElementById("pbs" + (x+i) + y);
+							possible.push([x+i,y]);
+							s.value = 2;
+							//s.innerHTML = 2;
+						}
+					}
+					if (y - i >= 0) {
+						let conflict = false;
+						for (let k = 0; k < allShips.length; ++k) {
+							if (allShips[k][0] == x && allShips[k][1] >= (y-i) && y > allShips[k][1]) {
+								conflict = true;
+							}
+						}
+						if (!conflict) {
+							let s = document.getElementById("pbs" + x + (y-i));
+							possible.push([x,y-i]);
+							s.value = 2;
+							//s.innerHTML = 2;
+						}
+					}
+					if (y + i < 10) {
+						let conflict = false;
+						for (let k = 0; k < allShips.length; ++k) {
+							if (allShips[k][0] == x && allShips[k][1] <= (y+i) && y < allShips[k][1]) {
+								conflict = true;
+							}
+						}
+						if (!conflict) {
+							let s = document.getElementById("pbs" + x + (y+i));
+							possible.push([x,y+i]);
+							s.value = 2;
+							//s.innerHTML = 2;
+						}
+					}
+				}
+				if (possible.length == 1) {
+						for (let i = 0; i < 10; ++i) {
+							for (let j = 0; j < 10; ++j) {
+								let currCell = document.getElementById("pbs" + i + j);
+								let isInCurr = false;
+								for (let k = 0; k < allShips.length; ++k) {
+									if ((i == allShips[k][0]) && (j == allShips[k][1])) {
+										isInCurr = true;
+										currCell.value = 1;
+										//currCell.innerHTML = 1;
+									}
+								}
+								if (!isInCurr) {
+									currCell.value = 0;
+									//currCell.innerHTML = 0;
+								}
+							}
+						}
+						displayStatus();
+						setShips(currShip);
+				}
+				else {
+					for (let i = 0; i < 10; ++i) {
+						for (let j = 0; j < 10; ++j) {
+							isIn = false;
+							for (let k = 0; k < possible.length; ++k) {
+								if ((possible[k][0] == i && possible[k][1] == j)) {
+									isIn = true;
+								}
+							}
+							for (let h = 0; h < allShips.length; ++h) {
+								if ((allShips[h][0] == i && allShips[h][1] == j)) {
+									isIn = true;
+								}
+							}
+							if (isIn == false) {
+								let s = document.getElementById("pbs" + i + j);
+								s.value = 4;
+								//s.innerHTML = 4;
+							}
+						}
+					}
+					displayStatus();
+				}
+			}
+			
+			function displayStatus() {
+				for (let i = 0; i < 10; ++i) {
+					for (let j = 0; j < 10; ++j) {
+						let cell = document.getElementById("pbs" + i + j);
+						if (cell.value == 2) {
+							cell.style.backgroundColor = "gray";
+						}
+						if (cell.value == 4) {
+							cell.style.backgroundColor = "blue";
+						}
+						if (cell.value == 0) {
+							cell.style.backgroundColor = "white";
+						}
+						if (cell.value == 1) {
+							cell.style.backgroundColor = "yellow";
+						}
+					}
+				}
+			}
+			
+			function setShips(x) {
+				switch (x) {
+					case 5:
+						setTimeout(function () { alert("Place your Carrier (size = 5)"); }, 100);
+						currShip = 5;
+						length = 5;
+						break;
+					case 4:
+						setTimeout(function () { alert("Place your Battleship (size = 4)"); }, 100);
+						currShip = 4;
+						length = 4;
+						break;
+					case 3:
+						setTimeout(function () { alert("Place your Destroyer (size = 3)"); }, 100);
+						currShip = 3;
+						length = 3;
+						break;
+					case 2:
+						setTimeout(function () { alert("Place your Submarine (size = 3)"); }, 100);
+						currShip = 2;
+						length = 3;
+						break;
+					case 1:
+						setTimeout(function () { alert("Place your Patrol Boat (size = 2)"); }, 100);
+						currShip = 1;
+						length = 2;
+						break;
+				}
+			}
+		
+			function inviteUser() {
+				let invitee = prompt("Enter the username of who you would like to invite", "");
+				let info = "invitee=" + JSON.stringify(invitee);
+				let httpRequest = new XMLHttpRequest();
+				httpRequest.onreadystatechange = function() {
+					if (httpRequest.readyState === XMLHttpRequest.DONE) {
+						if (httpRequest.status === 200) { 
+							alert(this.responseText);
+						}
+						else {
+							alert('There was a problem with the request.');
+						}
+					}
+				};
+				httpRequest.open("POST", "php/invite.php");
+				httpRequest.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+				httpRequest.send(info);
+			}
+			
+			function readInvites() {
+				let httpRequest = new XMLHttpRequest();
+				httpRequest.onreadystatechange = function() {
+					if (httpRequest.readyState === XMLHttpRequest.DONE) {
+						if (httpRequest.status === 200) { 
+							let result = JSON.parse(this.responseText);
+							displayInvites(result);
+						}
+						else {
+							alert('There was a problem with the request.');
+						}
+					}
+				};
+				httpRequest.open("POST", "php/readInvites.php");
+				httpRequest.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+				httpRequest.send();
+			}
+			
+			function displayInvites(result) {
+				let menu = document.getElementById('invites');
+				menu.innerHTML = "";
+				
+				for (let i = 0; i < Object.keys(result).length; ++i) {
+					let option = document.createElement('option');
+					let currentOption = result[i]['player1'];
+					option.value = currentOption;
+					option.innerHTML = currentOption;
+					menu.appendChild(option);
+				}
+			
+			}
+		
+			function readActiveGames() {
+				let httpRequest = new XMLHttpRequest();
+				httpRequest.onreadystatechange = function() {
+					if (httpRequest.readyState === XMLHttpRequest.DONE) {
+						if (httpRequest.status === 200) { 
+							let result = JSON.parse(this.responseText);
+							displayActiveGames(result);
+						}
+						else {
+							alert('There was a problem with the request.');
+						}
+					}
+				};
+				httpRequest.open("POST", "php/readActiveGames.php");
+				httpRequest.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+				httpRequest.send();
+			}
+			
+			function displayActiveGames(result) {
+				let menu = document.getElementById('activegames');
+				menu.innerHTML = "";
+				
+				for (let i = 0; i < Object.keys(result).length; ++i) {
+					let option = document.createElement('option');
+					let p1 = result[i]['player1'];
+					let p2 = result[i]['player2'];
+					option.value = p1 + " " + p2;
+					option.innerHTML = p1 + " vs. " + p2;
+					menu.appendChild(option);
+				}
+			}
+			
+			function checkSession() {
+				let httpRequest = new XMLHttpRequest();
+				httpRequest.onreadystatechange = function() {
+					if (httpRequest.readyState === XMLHttpRequest.DONE) {
+						if (httpRequest.status === 200) { 
+							if (this.responseText == 2) {
+								alert("You need to login or sign up for an account to be able to play. Redirecting you now");
+								window.location = "login.html";
+							}
+							else {
+								username = this.responseText;
+								readInvites();
+								readActiveGames();
+							}
+						}
+						else {
+							alert('There was a problem with the request.');
+						}
+					}
+				};
+				httpRequest.open("POST", "php/checkSession.php");
+				httpRequest.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+				httpRequest.send();
+			}
+			
+			function acceptInvite() {
+				let currInv = document.getElementById("invites").value;
+				if (currInv != "") {
+				let info = "player1=" + currInv;
+				let httpRequest = new XMLHttpRequest();
+				httpRequest.onreadystatechange = function() {
+					if (httpRequest.readyState === XMLHttpRequest.DONE) {
+						if (httpRequest.status === 200) { 
+							alert(this.responseText);
+						}
+						else {
+							alert('There was a problem with the request.');
+						}
+					}
+				};
+				httpRequest.open("POST", "php/acceptInvite.php");
+				httpRequest.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+				httpRequest.send(info);
+				}
+			}
+			
+			function joinActive() {
+				allShips = [];
+				shipList = [5,4,3,2,1]
+				let game = document.getElementById("activegames").value.split(" ");
+				let info = "player1=" + game[0] + "&player2=" + game[1];
+				let p1Container = document.getElementById('player1');
+				p1Container.innerHTML = "Player 1:" + " " + game[0];
+				p1Container.value = game[0];
+				let p2Container = document.getElementById('player2');
+				p2Container.innerHTML = "Player 2:" + " " + game[1];
+				p2Container.value = game[1];
+				let httpRequest = new XMLHttpRequest();
+				httpRequest.onreadystatechange = function() {
+					if (httpRequest.readyState === XMLHttpRequest.DONE) {
+						if (httpRequest.status === 200) { 
+							$result = JSON.parse(this.responseText);
+							if ($result[0]["ready1"] == 1 && $result[0]["ready2"] == 1) {
+								// go into game, load boards, see turn, etc.
+								loadGame();
+							}
+							else {
+								// do setup of boards, ships, validate, etc.
+								setupBoardForShips();
+								currShip = 5;
+								setShips(currShip);
+							}
+						}
+						else {
+							alert('There was a problem with the request.');
+						}
+					}
+				};
+				httpRequest.open("POST", "php/joinActive.php");
+				httpRequest.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+				httpRequest.send(info);
+			}
+			
+			function loadGame() {
+				let game = document.getElementById("activegames").value.split(" ");
+				let info = "player1=" + game[0] + "&player2=" + game[1];
+				let httpRequest = new XMLHttpRequest();
+				httpRequest.onreadystatechange = function() {
+					if (httpRequest.readyState === XMLHttpRequest.DONE) {
+						if (httpRequest.status === 200) { 
+							result = JSON.parse(this.responseText);
+							if (!Object.keys(result).length) {
+								//oneTimeLoad();
+								//updateStats(0);
+								alert("Your last ship was just hit! The game is over! You Lose!");
+								setTimeout(function () {location.reload();}, 100);
+							}
+							else {
+								gameActive = result[0]["active"];
+								if (gameActive == 1) {
+									p1board = JSON.parse(result[0]["player1board"]);
+									p2board = JSON.parse(result[0]["player2board"]);
+									leftboard = 0;
+									rightboard = 0;
+									if (username == game[0]) {
+										loadLeftBoard(p1board);
+										loadRightBoard(p2board);
+										leftboard = p1board;
+										rightboard = p2board;
+									}
+									else {
+										loadLeftBoard(p2board);
+										loadRightBoard(p1board);
+										leftboard = p2board;
+										rightboard = p1board;
+									}
+						
+									eb = rightboard;
+									updateTime();
+									if (username == game[0]) {
+										isPowerAvail = result[0]["player1super"];
+									}
+									else {
+										isPowerAvail = result[0]["player2super"]
+									}
+									loadPowers(isPowerAvail);
+									
+									isP1Turn = result[0]["turn"];
+									if (username == game[0]) {
+										loadTurn(0, isP1Turn);
+									}
+									else {
+										loadTurn(1, isP1Turn);
+									}
+									
+									if (currentturn == 0) {
+										setTimeout(loadGame, 10);
+									}
+								}
+							}
+		
+						}
+						else {
+							alert('There was a problem with the request.');
+						}
+					}
+				};
+				httpRequest.open("POST", "php/loadGame.php");
+				httpRequest.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+				httpRequest.send(info);
+			}
+			
+			function setMove(i, j) {
+				if (currentturn == 1) {
+					let cell = document.getElementById("ebs" + i + j);
+					switch (cell.value) {
+						case '2': { // hit ship
+							if (super3 && ctrSuper3 < 3) {
+								ctrSuper3 += 1;
+								alert("You have already hit that spot!")
+							}
+							else {
+								isP1Turn = (isP1Turn == 1 ? 0 : 1);
+								alert("You have already hit that spot!");
+							}
+							break;
+						}
+						case '4': { // no hit water
+							// fire missile
+							if (super3 && ctrSuper3 < 3) {
+								ctrSuper3 += 1;
+								//cell.value = 3;
+								eb[i][j] = 3;
+								alert("You hit water!");
+							}
+							else {
+								//cell.value = 3;
+								eb[i][j] = 3;
+								isP1Turn = (isP1Turn == 1 ? 0 : 1);
+								alert("You hit water!");
+							}
+							break;
+						}
+						case '3': { // hit water
+							if (super3 && ctrSuper3 < 3) {
+								ctrSuper3 += 1;
+								alert("You have already hit that spot!");
+							}
+							else {
+								isP1Turn = (isP1Turn == 1 ? 0 : 1);
+								alert("You have already hit that spot!");
+							}
+							break;
+						}
+						case '1': { // no hit ship
+							if (super3 && ctrSuper3 < 3) {
+								ctrSuper3 += 1;
+								//cell.value = 2;
+								eb[i][j] = 2;
+								alert("You hit a ship!");
+							}
+							else {
+								//cell.value = 2;
+								eb[i][j] = 2;
+								isP1Turn = (isP1Turn == 1 ? 0 : 1);
+								alert("You hit a ship!");
+							}
+							break;
+						}
+					}
+					countShipsRemainingRight(1);
+					let active = 1;
+					if (ebShipsLeft == 0) {
+						active = 0;
+					}
+					// send data via ajax
+					let jsoneb = JSON.stringify(eb);
+					let p1 = document.getElementById('player1').value;
+					let p2 = document.getElementById('player2').value;
+					let info = "eb=" + jsoneb + "&p1=" + p1 + "&p2=" + p2 + "&active=" + active + "&turn=" + isP1Turn;
+					let httpRequest = new XMLHttpRequest();
+					httpRequest.onreadystatechange = function() {
+						if (httpRequest.readyState === XMLHttpRequest.DONE) {
+							if (httpRequest.status === 200) {
+								result = JSON.parse(this.responseText);
+								let isAct = result[0]["active"];
+								if (isAct == 1) {
+									loadGame();
+								}
+								else {
+									//oneTimeLoad();
+									updateStats(1);
+									alert("Game is over! You Win!");
+									setTimeout(function () {location.reload();}, 100);
+								}
+							}
+							else {
+								alert('There was a problem with the request.');
+							}
+						}
+					};
+					httpRequest.open("POST", "php/updateGame.php");
+					httpRequest.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+					httpRequest.send(info);
+					//send stuff, update locally, then start refreshing
+					// display again
+					//loadGame();
+					displayShipsRight();
+				}
+				else {
+					alert("It isn't your turn.");
+				}
+			}
+			
+			function updateStats(x) {
+				let game = document.getElementById("activegames").value.split(" ");
+				let info = "player1=" + game[0] + "&player2=" + game[1] + "&win=" + x + "&gamesplayed=" + 1;
+				let httpRequest = new XMLHttpRequest();
+				httpRequest.onreadystatechange = function() {
+					if (httpRequest.readyState === XMLHttpRequest.DONE) {
+						if (httpRequest.status === 200) { 
+						}
+						else {
+							alert('There was a problem with the request.');
+						}
+					}
+				};
+				httpRequest.open("POST", "php/updateLeaderboard.php");
+				httpRequest.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+				httpRequest.send(info);
+			}
+			
+			function loadLeftBoard(x) {
+				for (let i = 0; i < 10; ++i) {
+					for (let j = 0; j < 10; ++j) {
+						let cell = document.getElementById("pb" + i + j);
+						cell.innerHTML = "<button type='button' id='pbs" + i + j + "' value = '" + x[i][j] + "'></button>"
+					}
+				}
+				displayShipsLeft();
+				countShipsRemainingLeft();
+			}
+			
+			function countShipsRemainingLeft() {
+				let ctr = 0;
+				let ships = document.getElementById('p1ShipsRem');
+				for (let i = 0; i < 10; ++i) {
+					for (let j = 0; j < 10; ++j) {
+						let cell = document.getElementById("pbs" + i + j);
+						if (cell.value == '1') {
+							ctr += 1;
+						}
+					}
+				}
+				ships.innerHTML = "You: " + ctr ;
+			}
+			
+			function countShipsRemainingRight() {
+				let ctr = 0;
+				let ships = document.getElementById('p2ShipsRem');
+				for (let i = 0; i < 10; ++i) {
+					for (let j = 0; j < 10; ++j) {
+						let cell = document.getElementById("ebs" + i + j);
+						if (cell.value == 1) {
+							ctr += 1;
+						}
+					}
+				}
+				ebShipsLeft = ctr;
+				ships.innerHTML = "Opponent: " + ctr ;
+			}
+			
+			function loadRightBoard(x) {
+				for (let i = 0; i < 10; ++i) {
+					for (let j = 0; j < 10; ++j) {
+						let cell = document.getElementById("eb" + i + j);
+						cell.innerHTML = "<button type='button' id='ebs" + i + j + "' value = " + x[i][j] + " onclick = setMove(" + i + "," + j + ")></button>";
+					}
+				}
+				displayShipsRight();
+				countShipsRemainingRight();
+			}
+			
+			function displayShipsLeft() {
+				for (let i = 0; i < 10; ++i) {
+					for (let j = 0; j < 10; ++j) {
+						let cell = document.getElementById("pbs" + i + j);
+						if (cell.value == 2) { // hit ship
+							cell.style.backgroundColor = "red";
+						}
+						if (cell.value == 4) { // no hit water
+							cell.style.backgroundColor = "blue";
+						}
+						if (cell.value == 3) { // hit water
+							cell.style.backgroundColor = "cyan";
+						}
+						if (cell.value == 1) { // no hit ship
+							cell.style.backgroundColor = "yellow";
+						}
+					}
+				}
+			}
+			
+			function displayShipsRight() {
+				for (let i = 0; i < 10; ++i) {
+					for (let j = 0; j < 10; ++j) {
+						let cell = document.getElementById("ebs" + i + j);
+						if (cell.value == 2) { // hit ship
+							cell.style.backgroundColor = "red";
+						}
+						if (cell.value == 4 || cell.value == 1) { // no hit water
+							cell.style.backgroundColor = "blue";
+						}
+						if (cell.value == 3) { // hit water
+							cell.style.backgroundColor = "cyan";
+						}
+						if (cell.value == 0) { // hit water
+							cell.style.backgroundColor = "cyan";
+						}
+					}
+				}
+			}
+			
+			function updateTime() {
+				let game = document.getElementById("activegames").value.split(" ");
+				let info = "player1=" + game[0] + "&player2=" + game[1];
+				let httpRequest = new XMLHttpRequest();
+				httpRequest.onreadystatechange = function() {
+					if (httpRequest.readyState === XMLHttpRequest.DONE) {
+						if (httpRequest.status === 200) { 
+							loadTime(this.responseText);
+						}
+						else {
+							alert('There was a problem with the request.');
+						}
+					}
+				};
+				httpRequest.open("POST", "php/updateTime.php");
+				httpRequest.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+				httpRequest.send(info);
+			}
+			
+			function loadTime(x) {
+				let container = document.getElementById("time");
+				container.innerHTML = x + " seconds";
+			}
+			
+			function loadPowers(x) {
+				if (x == 1) {
+					let powersboard = document.getElementById('powerscontainer');
+					powersboard.innerHTML = "";
+					let threesuper = document.createElement('button');
+					threesuper.type = "button";
+					threesuper.innerHTML = "Three Torpedos";
+					threesuper.onclick = setPower3;
+					
+					let bigsuper = document.createElement('button');
+					bigsuper.type = "button";
+					bigsuper.innerHTML = "Big Torpedo";
+					bigsuper.onclick = setPowerBig;
+					
+					powersboard.appendChild(threesuper);
+					powersboard.appendChild(document.createElement('br'));
+					powersboard.appendChild(bigsuper);
+				}
+			}
+			
+			function setPower3() {
+				super3 = true;
+				updateSuper();
+			}
+			
+			function setPowerBig() {
+				superbig = true;
+				updateSuper();
+			}
+			
+			function updateSuper() {
+				let game = document.getElementById("activegames").value.split(" ");
+				let info = "player1=" + game[0] + "&player2=" + game[1];
+				let httpRequest = new XMLHttpRequest();
+				httpRequest.onreadystatechange = function() {
+					if (httpRequest.readyState === XMLHttpRequest.DONE) {
+						if (httpRequest.status === 200) {
+						}
+						else {
+							alert('There was a problem with the request.');
+						}
+					}
+				};
+				httpRequest.open("POST", "php/updateSuper.php");
+				httpRequest.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+				httpRequest.send(info);
+			}
+
+			function loadTurn(x, y) {
+				let container = document.getElementById("turn");
+				if (x == y) {
+					container.innerHTML = "Your turn";
+					currentturn = 1;
+				}
+				else {
+					container.innerHTML = "Opponent's turn";
+					currentturn = 0;
+				}
+			}
+			
+			function oneTimeLoad() {
+				let game = document.getElementById("activegames").value.split(" ");
+				let info = "player1=" + game[0] + "&player2=" + game[1];
+				let httpRequest = new XMLHttpRequest();
+				httpRequest.onreadystatechange = function() {
+					if (httpRequest.readyState === XMLHttpRequest.DONE) {
+						if (httpRequest.status === 200) { 
+							result = JSON.parse(this.responseText);
+							p1board = JSON.parse(result[0]["player1board"]);
+							p2board = JSON.parse(result[0]["player2board"]);
+							leftboard = 0;
+							rightboard = 0;
+							if (username == game[0]) {
+								loadLeftBoard(p1board);
+								loadRightBoard(p2board);
+								leftboard = p1board;
+								rightboard = p2board;
+							}
+							else {
+								loadLeftBoard(p2board);
+								loadRightBoard(p1board);
+								leftboard = p2board;
+								rightboard = p1board;
+							}
+				
+							eb = rightboard;
+							updateTime();
+							if (username == game[0]) {
+								isPowerAvail = result[0]["player1super"];
+							}
+							else {
+								isPowerAvail = result[0]["player2super"]
+							}
+							loadPowers(isPowerAvail);
+							
+							isP1Turn = result[0]["turn"];
+							if (username == game[0]) {
+								loadTurn(0, isP1Turn);
+							}
+							else {
+								loadTurn(1, isP1Turn);
+							}
+						}
+						else {
+							alert('There was a problem with the request.');
+						}
+					}
+				};
+				httpRequest.open("POST", "php/loadGame.php");
+				httpRequest.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+				httpRequest.send(info);
+			}
+			
+			checkSession();
+
+		</script>
+	</body>
+	
+</html>

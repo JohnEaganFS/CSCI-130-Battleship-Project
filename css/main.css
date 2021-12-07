@@ -1,0 +1,35 @@
+* {
+	font-family: 'Roboto', sans-serif;
+}
+
+#navbar ul {
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+}
+	
+#navbar li {
+	display: inline;
+	float: left;
+}
+
+#navbar a {
+	display: block;
+	padding: 10px 10px 10px 10px;
+	text-decoration: none;
+	text-align: center;
+}
+
+#navbar a:not(.active) {
+	background-color: #eeeeee;
+	color: blue;
+}
+
+#navbar li a:hover:not(.active) {
+	background-color: #ced1d4;
+}
+
+a.active {
+	background-color: #13284c;
+	color: white;
+}
